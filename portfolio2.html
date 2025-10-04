@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            background-color:black;
+        }
+        a{
+            color:white;
+            text-decoration: none;
+        }
+        .navbar{
+            position:fixed;
+            left:0;
+            top:0;
+            width:100%;
+            padding:25px 9%;
+            background-color: rgb(48, 45, 45);
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index:100;
+        }
+        .navbar .logo{
+            font-size: 30px;
+            font-weight:700;
+        }
+        .navbar ul{
+            display: flex;
+        }
+        .navbar ul li{
+            list-style: none;
+            margin-left:35px;
+
+        }
+        .navbar ul li a {
+            font-size: 20px;
+            font-weight: 600;
+            transition:0.5s;
+        }
+        .navbar ul li a:hover {
+            color:lightgreen;
+        }
+        .navbar ul li.active a{
+            color:lightgreen;
+        }
+        .home{
+            display:flex;
+            align-items:center;
+            height:100vh;
+            padding:60px 9% 0;
+            color:white;
+        }
+        .home-info h1{
+            font-size:55px;
+        }
+        .home-info h2{
+            font-size:32px;
+            margin-top:-10px;
+        }
+        .home-info p{
+            font-size:16px;
+            margin:10px 0 25px;
+        }
+        .home-info .btn-sci{
+            display:flex;
+            align-items: center;
+        } 
+
+        .btn{
+            display:inline-block;
+            padding:10px 30px;
+            background:lightgreen;
+            border:2px solid lightgreen;
+            border-radius:40px;
+            box-shadow:0 0 20px rgb(115, 167, 115);
+            font-size:16px;
+            color:black;
+            cursor:pointer;
+            font-weight:600;
+            transition:0.5s;
+        }
+        .btn:hover{
+            background-color: transparent;
+            color:lightgreen;
+            box-shadow: none;
+        }
+        .home-info .btn-sci .sci{
+            margin-left:20px;
+        }
+        .home-info .btn-sci .sci a{
+            display:inline-block;
+            padding:8px;
+            border:2px solid lightgreen;
+            border-radius:50%;
+            color:lightgreen;
+            font-size:20px;
+            margin:0 8px;
+            transition:0.5s;
+        }
+        .home-info .btn-sci .sci a:hover{
+            background-color: lightgreen;
+            color:black;
+            box-shadow:0 0 10px lightgreen;
+        }
+        .home-img .img-box{
+            width:30vw;
+            height:30vw;
+            border-radius:50%;
+            padding:5px;
+        }
+        .home-img .img-box .img-item{
+            position:relative;
+            width:70%;
+            height:70%;
+            background-color: slateblue;
+            border-radius: 50%;
+            display:flex;
+            justify-content: center;
+            overflow:hidden;
+            top:20%;
+            left:5%;
+            box-shadow: 0 0 30px rgb(206, 199, 253);
+            transition:0.3s;
+        }
+        .img-item:hover{
+            border:2px solid white;
+            transform:translateY(-5px);
+        }
+        .home-img .img-box .img-item img{
+            position:absolute;
+            display:block;
+            width:100%;
+            object-fit:cover;
+            background-color:slateblue;
+        }
+
+        /* About Section*/
+        .about-head{
+            height:80vh;
+            width:100vw;
+            background-color: rgba(95, 93, 93, 0.411);
+            padding:8% 10%;
+            display:block;
+        }
+        .about-title{
+            color:lightgreen;
+            font-size:50px;
+        }
+        
+        .about-content .p1{
+            margin:30px 10px;
+            color:white;
+            font-size: 20px;
+        }
+        .about-content .p2{
+            margin:30px 10px;
+            color:white;
+            font-size: 20px;
+        }
+        .tech-list{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        
+        }
+        .tech-list span{
+            background: lightgreen;
+            color: black;
+            padding: 8px 20px;
+            border-radius:20px;
+            font-weight:600;
+            transition:0.5s;
+            border:2px solid lightgreen;
+        }
+        .tech-list span:hover{
+            background:transparent;
+            color: lightgreen;
+            cursor: pointer;
+        }
+        /*Projects section*/
+        .projects{
+            padding: 80px 9%;
+            background-color: black;
+            color: white;
+        }
+        .projects h2{
+            font-size: 40px;
+            margin-bottom: 50px;
+            color: lightgreen;
+            text-align: center;
+        }
+        .project-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-box{
+            background-color: rgba(30,30,30);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: 0.5s;
+        }
+        .project-box:hover{
+            border-color:lightgreen;
+            transform:translateY(-10px);
+        }
+        .project-box h3{
+            font-size: 22px;
+            color: lightgreen;
+            margin-bottom: 15px;
+        }
+        .project-box p{
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .project-tags{
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .project-tags span{
+            background-color: slateblue;
+            padding:5px 12px;
+            border-radius:15px;
+            font-size: 13px;
+        }
+        /*Skills Section*/
+        .skills{
+            padding:80px 9%;
+            background-color:rgba(95, 93, 93, 0.411);
+            color:white;
+        }
+        .skills h2{
+            font-size: 40px;
+            color: lightgreen;
+            margin-bottom:50px;
+            text-align: center;
+        }
+        .skills-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap:25px;
+        }
+        .skills-box{
+            background-color: black;
+            padding:25px;
+            border-radius: 12px;
+            text-align: center;
+            transition:0.3s;
+        }
+        .skills-box:hover{
+            background: rgb(88, 86, 86);
+            border:2px solid white;
+        }
+        .skills-box i{
+            font-size: 35px;
+            color:lightgreen;
+            margin-bottom:10px;
+        }
+        .skills-box h3{
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .skills-box p{
+            font-size: 18px;
+            color: #aaa;
+        }
+        /*contact*/
+        .contact{
+            padding:80px 9%;
+            background-color: black;
+            text-align: center;
+            color:white;
+        }
+        .contact h2{
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: lightgreen;
+        }
+        .contact p{
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        @media (max-width: 768px){
+            .home{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                height:auto;
+                padding-bottom:50px;
+                line-height:1.4;
+            }
+            .home-img{
+                margin-top: 30px;
+            }
+            .home-img .img-box{
+                width:200px;
+                height:200px;
+            }
+            .about-head{
+            height: auto;
+            padding-bottom: 50px;
+        }
+        /* Hide checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* Hamburger icon */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+}
+.hamburger span {
+    display: block;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .navbar ul {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgb(48, 45, 45);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: 0.3s;
+    }
+
+    /* Show hamburger */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Toggle menu */
+    #menu-toggle:checked ~ ul {
+        left: 0;
+    }
+
+    /* Animate hamburger into X */
+    #menu-toggle:checked + .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    #menu-toggle:checked + .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+    #menu-toggle:checked + .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+}
+
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+    <a href="#" class="logo">Portfolio.</a>
+
+    <!-- hidden checkbox -->
+    <input type="checkbox" id="menu-toggle">
+
+    <!-- hamburger -->
+    <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <ul>
+        <li class="active"><a href="#home">Home</a></li>
+        <li><a href="#About">About</a></li>
+        <li><a href="#Projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+    <section class="home">
+        <div class="home-info">
+            <h1>Hi,I'm Ranit Laha</h1>
+            <h2>I'm a Frontend Developer</h2>
+            <p>I'm a passionate developer who enjoys turning ideas into clean, 
+                functional, and user-friendly websites and applications.</p>
+            <div class="btn-sci">   
+                <a href="#" class="btn">Download CV</a>
+            
+                <div class="sci">
+                    <a href="https://github.com/dashboard" target="_blank"><i class='bx bxl-github'></i></a>
+                    <a href="https://www.linkedin.com/feed/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                    <a href="https://x.com/home" target="_blank"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://www.youtube.com/@ScalerSchoolOfTechnology" target="_blank"><i class='bx bxl-youtube'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="home-img">
+            <div class="img-box">
+                <div class="img-item">
+                    <img src="picture2.png" alt="">
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <Section>
+        <div class="about-head" id="About">
+            <h1 class="about-title" >About Me</h1>
+            <div class="about-content">
+                <p class="p1">I am a passionate<b style="color:rgb(142, 128, 240)"> Frontend Developer </b>and Game Designer with experience creating interactive and engaging digital experiences.
+                     I specialize in building <b style="color:rgb(142, 128, 240)"> Hand gesture games </b>, where players can interact using hand movements instead of traditional controllers. 
+                     I enjoy combining creativity with code to bring fun and innovative projects to life.</p>
+            
+                <p class="p2">I enjoy learning new technologies and building things that are fun and useful.</p>
+                <h3 style="color: lightgreen; margin-top: 30px; margin-bottom: 15px;">Languages I Know:</h3>
+        <div class="tech-list">
+            <span>Java</span>
+            <span>JavaScript</span>
+            <span>C</span>
+            <span>C#</span>
+            <span>Python</span>
+            <span>SQL</span>
+        </div>
+            </div>
+        </div>
+    </Section>
+    <section class="projects" id="Projects">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-box">
+                <h3>Hand Gesture Game Collection</h3>
+                <p>Multiple games you can play using hand signs! Your webcam tracks your hand movements to control the game.</p>
+                <div class="project-tags">
+                    <span>Python</span>
+                    <span>OpenCV</span>
+                </div>
+            </div>
+            
+            <div class="project-box">
+                <h3>Rock Paper Scissors</h3>
+                <p>Play rock paper scissors with the computer using hand gestures.</p>
+                <div class="project-tags">
+                    <span>JavaScript</span>
+                </div>
+            </div>
+            
+            <div class="project-box">
+                <h3>Gesture Shooter</h3>
+                <p>A shooting game where you control the character with hand movements.</p>
+                <div class="project-tags">
+                    <span>C#</span>
+                    <span>Unity</span>
+                </div>
+            </div>
+            <div class="project-box">
+                <h3>Air Drawing</h3>
+                <p>Draw in the air using your finger! Your movements get captured and shown on screen.</p>
+                <div class="project-tags">
+                    <span>Python</span>
+                </div>
+            </div>
+            
+            <div class="project-box">
+                <h3>Runner Game</h3>
+                <p>An endless runner game controlled by hand gestures to jump and slide.</p>
+                <div class="project-tags">
+                    <span>Java</span>
+                </div>
+            </div>
+            
+            <div class="project-box">
+                <h3>Memory Card Game</h3>
+                <p>Match cards using hand signs to flip them over.</p>
+                <div class="project-tags">
+                    <span>JavaScript</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="skills" id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skills-box">
+                <i class="bx bxl-html5"></i>
+                <h3>HTML</h3>
+                <p>Building web pages</p>
+            </div>
+            <div class="skills-box">
+                <i class="bx bxl-css3"></i>
+                <h3>CSS</h3>
+                <p>Styling websites</p>
+            </div>
+            <div class="skills-box">
+                <i class="bx bxl-javascript"></i>
+                <h3>JavaScript</h3>
+                <p>Making sites interactive</p>
+            </div>
+            <div class="skills-box">
+                <i class="bx bx-joystick"></i>
+                <h3>Game Development</h3>
+                <p>Creating fun games</p>
+            </div>
+            <div class="skills-box">
+                <i class='bx bx-video'></i>
+                <h3>Hand Gesture Recognition</h3>
+                <p>Building gesture controls</p>
+            </div>
+            <div class="skills-box">
+                <i class='bx bxl-git'></i>
+                <h3>Git</h3>
+                <p>Version control</p>
+            </div>
+            <div class="skills-box">
+                <i class='bx bx-data'></i>  
+                <h3>SQL</h3>
+                <p>Database Management</p>
+            </div>
+            <div class="skills-box">
+                <i class="bx bxl-python"></i>
+                <h3>Python</h3>
+                <p>Programming & AI</p>
+            </div>
+        </div>
+    </section>
+        <section class="contact" id="contact">
+        <h2>Let's Connect!</h2>
+        <p>Want to know more about my hand gesture games?</p>
+        <a href="#" class="btn">Contact Me</a>
+    </section>
+</body>
+</html>
